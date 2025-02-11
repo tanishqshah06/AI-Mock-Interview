@@ -27,8 +27,8 @@ function StartInterview({ params: paramsPromise }) {
       .from(MockInterview)
       .where(eq(MockInterview.mockId, params.interviewId));
 
-    const jsonMockResp = JSON.parse(result[0].jsonMockResp);
-    console.log(jsonMockResp);
+    const jsonMockResp = JSON.parse(result[0].jsonMockResp.trim());
+    console.log("result", result[0].jsonMockResp.trim());
     setMockInterviewQuestion(jsonMockResp);
     setInterviewData(result[0]);
 
@@ -56,14 +56,14 @@ function StartInterview({ params: paramsPromise }) {
             Previous Question
           </Button>
         )}
-        {activeQuestionIndex != mockInterviewQuestion?.interviewQuestions?.length - 1 && (
+        {activeQuestionIndex != mockInterviewQuestion?.interview_questions?.length - 1 && (
           <Button
             onClick={() => setActiveQuestionIndex(activeQuestionIndex + 1)}
           >
             Next Question
           </Button>
         )}
-        {activeQuestionIndex === mockInterviewQuestion?.interviewQuestions?.length - 1 && (
+        {activeQuestionIndex === mockInterviewQuestion?.interview_questions?.length - 1 && (
           <Link
             // key={activeQuestionIndex} // Force React to re-render
             href={`/dashboard/interview/${interviewData?.mockId}/feedback`}

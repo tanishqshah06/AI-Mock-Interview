@@ -3,7 +3,8 @@ import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
-import img1 from '../../../public/logo.svg'
+import img1 from '../../../public/logo2.svg'
+import Link from "next/link";
 
 function Header() {
   const path = usePathname();
@@ -12,40 +13,35 @@ function Header() {
   }, []);
 
   return (
-    <div className="flex p-4 items-center justify-between bg-secondary shadow-sm">
-      <Image src={img1} width={160} height={100} alt="logo" />
-      <ul className="hidden md:flex gap-6">
-        <li
-          className={`hover:text-primary hover:font-bold transition-all cursor-pointer ${
-            path == "/dashboard" && "text-primary font-bold"
+    <header className="flex items-center justify-between p-4 bg-secondary shadow-md">
+      {/* Logo */}
+      <Link href="/">
+        <Image src="/logo.svg" width={140} height={40} alt="Logo" className="cursor-pointer" />
+      </Link>
+
+      {/* Navigation */}
+      <nav className="hidden md:flex gap-6">
+        <Link
+          href="/dashboard"
+          className={`text-lg font-medium transition-colors ${
+            path === "/dashboard" ? "text-primary font-bold" : "text-gray-700 hover:text-primary"
           }`}
         >
           Dashboard
-        </li>
-        <li
-          className={`hover:text-primary hover:font-bold transition-all cursor-pointer ${
-            path == "/dashboard/questions" && "text-primary font-bold"
+        </Link>
+        <Link
+          href="/"
+          className={`text-lg font-medium transition-colors ${
+            path === "/" ? "text-primary font-bold" : "text-gray-700 hover:text-primary"
           }`}
         >
-          Questions
-        </li>
-        <li
-          className={`hover:text-primary hover:font-bold transition-all cursor-pointer ${
-            path == "/dashboard/upgrades" && "text-primary font-bold"
-          }`}
-        >
-          Upgrade
-        </li>
-        <li
-          className={`hover:text-primary hover:font-bold transition-all cursor-pointer ${
-            path == "/dashboard/works" && "text-primary font-bold"
-          }`}
-        >
-          How it works
-        </li>
-      </ul>
+          Home
+        </Link>
+      </nav>
+
+      {/* User Profile */}
       <UserButton />
-    </div>
+    </header>
   );
 }
 

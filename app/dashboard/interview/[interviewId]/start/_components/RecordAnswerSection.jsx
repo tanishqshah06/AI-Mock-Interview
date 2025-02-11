@@ -20,7 +20,7 @@ function RecordAnswerSection({
   activeQuestionIndex,
   interviewData,
 }) {
-  const questions = mockInterviewQuestion?.interviewQuestions || [];
+  const questions = mockInterviewQuestion?.interview_questions || [];
 
   const [userAnswer, setUserAnswer] = useState();
   const [loading, setLoading] = useState(false);
@@ -83,7 +83,7 @@ function RecordAnswerSection({
       .replace("```json", "")
       .replace("```", "");
 
-    console.log(mockJsonResp);
+    // console.log(mockJsonResp);
     const JsonFeedbackResp = JSON.parse(mockJsonResp);
 
     const resp = await db.insert(UserAnswer).values({

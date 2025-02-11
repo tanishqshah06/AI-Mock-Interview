@@ -3,21 +3,21 @@ import { Lightbulb, Volume2 } from "lucide-react";
 import React from "react";
 
 function QuestionsSection({ mockInterviewQuestion = {}, activeQuestionIndex }) {
-  const questions = mockInterviewQuestion?.interviewQuestions || [];
+  const questions = mockInterviewQuestion?.interview_questions || [];
 
+  // console.log("questions:", questions);
   // console.log("mockInterviewQuestion:", mockInterviewQuestion);
-  console.log("questions:", activeQuestionIndex);
 
   if (!Array.isArray(questions)) {
-    console.error("interviewQuestions is not an array:", questions);
+    console.error("interview_questions is not an array:", questions);
     return <p>No questions available.</p>;
-  }
+  } 
 
   const textToSpeech= (text)=>{
     if('speechSynthesis' in window){
         const speech = new SpeechSynthesisUtterance(text);
         window.speechSynthesis.speak(speech)
-    } else{
+    } else{ 
         alert('Sorry your browser does not support text to speech')
     }
   }
