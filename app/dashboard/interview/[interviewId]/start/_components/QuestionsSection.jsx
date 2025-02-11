@@ -3,24 +3,27 @@ import { Lightbulb, Volume2 } from "lucide-react";
 import React from "react";
 
 function QuestionsSection({ mockInterviewQuestion = {}, activeQuestionIndex }) {
-  const questions = mockInterviewQuestion?.interviewQuestions || [];
+  const questions =
+    Object.values(mockInterviewQuestion || {}).find((val) =>
+      Array.isArray(val)
+    ) || [];
 
   // console.log("questions:", questions);
   // console.log("mockInterviewQuestion:", mockInterviewQuestion);
 
   if (!Array.isArray(questions)) {
-    console.error("interviewQuestions is not an array:", questions);
+    console.error("interview_questions is not an array:", questions);
     return <p>No questions available.</p>;
-  } 
-
-  const textToSpeech= (text)=>{
-    if('speechSynthesis' in window){
-        const speech = new SpeechSynthesisUtterance(text);
-        window.speechSynthesis.speak(speech)
-    } else{ 
-        alert('Sorry your browser does not support text to speech')
-    }
   }
+
+  const textToSpeech = (text) => {
+    if ("speechSynthesis" in window) {
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    } else {
+      alert("Sorry your browser does not support text to speech");
+    }
+  };
 
   return (
     questions && (
@@ -43,16 +46,23 @@ function QuestionsSection({ mockInterviewQuestion = {}, activeQuestionIndex }) {
             <p>No questions available.</p>
           )}
         </div>
-        <h2 className="my-5 text-md md:text-lg">{questions[activeQuestionIndex]?.question}</h2>
+        <h2 className="my-5 text-md md:text-lg">
+          {questions[activeQuestionIndex]?.question}
+        </h2>
 
-          <Volume2 className="cursor-pointer" onClick={()=>textToSpeech(questions[activeQuestionIndex]?.question)} />
+        <Volume2
+          className="cursor-pointer"
+          onClick={() => textToSpeech(questions[activeQuestionIndex]?.question)}
+        />
 
         <div className="border rounded-lg p-5 bg-blue-100 mt-20">
-            <h2 className="flex gap-2 items-center text-primary">
-                <Lightbulb />
-                <strong>Note : </strong>
-            </h2>
-            <h2 className="text-sm text-primary my-2">{process.env.NEXT_PUBLIC_QUESTION_NOTE}</h2>
+          <h2 className="flex gap-2 items-center text-primary">
+            <Lightbulb />
+            <strong>Note : </strong>
+          </h2>
+          <h2 className="text-sm text-primary my-2">
+            {process.env.NEXT_PUBLIC_QUESTION_NOTE}
+          </h2>
         </div>
       </div>
     )
