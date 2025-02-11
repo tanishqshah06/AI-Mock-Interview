@@ -20,7 +20,7 @@ function RecordAnswerSection({
   activeQuestionIndex,
   interviewData,
 }) {
-  const questions = mockInterviewQuestion?.interview_questions || [];
+  const questions = mockInterviewQuestion?.interviewQuestions || [];
 
   const [userAnswer, setUserAnswer] = useState();
   const [loading, setLoading] = useState(false);

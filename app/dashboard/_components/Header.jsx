@@ -37,14 +37,6 @@ function Header() {
         >
           Home
         </Link>
-        <Link
-          href="/"
-          className={`text-lg font-medium transition-colors ${
-            path === "/" ? "text-primary font-bold" : "text-gray-700 hover:text-primary"
-          }`}
-        >
-          Overview
-        </Link>
       </nav>
 
       {/* User Profile */}

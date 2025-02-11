@@ -3,13 +3,13 @@ import { Lightbulb, Volume2 } from "lucide-react";
 import React from "react";
 
 function QuestionsSection({ mockInterviewQuestion = {}, activeQuestionIndex }) {
-  const questions = mockInterviewQuestion?.interview_questions || [];
+  const questions = mockInterviewQuestion?.interviewQuestions || [];
 
   // console.log("questions:", questions);
   // console.log("mockInterviewQuestion:", mockInterviewQuestion);
 
   if (!Array.isArray(questions)) {
-    console.error("interview_questions is not an array:", questions);
+    console.error("interviewQuestions is not an array:", questions);
     return <p>No questions available.</p>;
   } 
 

@@ -56,14 +56,14 @@ function StartInterview({ params: paramsPromise }) {
             Previous Question
           </Button>
         )}
-        {activeQuestionIndex != mockInterviewQuestion?.interview_questions?.length - 1 && (
+        {activeQuestionIndex != mockInterviewQuestion?.interviewQuestions?.length - 1 && (
           <Button
             onClick={() => setActiveQuestionIndex(activeQuestionIndex + 1)}
           >
             Next Question
           </Button>
         )}
-        {activeQuestionIndex === mockInterviewQuestion?.interview_questions?.length - 1 && (
+        {activeQuestionIndex === mockInterviewQuestion?.interviewQuestions?.length - 1 && (
           <Link
             // key={activeQuestionIndex} // Force React to re-render
             href={`/dashboard/interview/${interviewData?.mockId}/feedback`}
