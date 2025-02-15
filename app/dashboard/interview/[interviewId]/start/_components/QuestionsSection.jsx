@@ -3,18 +3,18 @@ import { Lightbulb, Volume2 } from "lucide-react";
 import React from "react";
 
 function QuestionsSection({ mockInterviewQuestion = {}, activeQuestionIndex }) {
-  // const questions =
-  //   Object.values(mockInterviewQuestion || {}).find((val) =>
-  //     Array.isArray(val)
-  //   ) || [];
+  const questions =
+    Object.values(mockInterviewQuestion || {}).find((val) =>
+      Array.isArray(val)
+    ) || [];
 
-  // console.log("questions:", questions);
-  // console.log("mockInterviewQuestion:", mockInterviewQuestion);
+  console.log("questions:", questions);
+  console.log("mockInterviewQuestion:", mockInterviewQuestion);
 
-  // if (!Array.isArray(questions)) {
-  //   console.error("interview_questions is not an array:", questions);
-  //   return <p>No questions available.</p>;
-  // }
+  if (!Array.isArray(questions)) {
+    console.error("interview_questions is not an array:", questions);
+    return <p>No questions available.</p>;
+  }
 
   const textToSpeech = (text) => {
     if ("speechSynthesis" in window) {
@@ -26,11 +26,11 @@ function QuestionsSection({ mockInterviewQuestion = {}, activeQuestionIndex }) {
   };
 
   return (
-    mockInterviewQuestion && (
+    questions && (
       <div className="p-5 border rounded-lg my-10">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {mockInterviewQuestion.length > 0 ? (
-            mockInterviewQuestion.map((questionObj, index) => (
+          {questions.length > 0 ? (
+            questions.map((questionObj, index) => (
               <h2
                 key={index}
                 className={`p-2 bg-secondary rounded-full text-xs md:text-sm text-center cursor-pointer ${
@@ -47,12 +47,12 @@ function QuestionsSection({ mockInterviewQuestion = {}, activeQuestionIndex }) {
           )}
         </div>
         <h2 className="my-5 text-md md:text-lg">
-          {mockInterviewQuestion[activeQuestionIndex]?.question}
+          {questions[activeQuestionIndex]?.question}
         </h2>
 
         <Volume2
           className="cursor-pointer"
-          onClick={() => textToSpeech(mockInterviewQuestion[activeQuestionIndex]?.question)}
+          onClick={() => textToSpeech(questions[activeQuestionIndex]?.question)}
         />
 
         <div className="border rounded-lg p-5 bg-blue-100 mt-20">
