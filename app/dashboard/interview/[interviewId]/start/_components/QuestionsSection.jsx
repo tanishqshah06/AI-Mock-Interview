@@ -8,7 +8,7 @@ function QuestionsSection({ mockInterviewQuestion = {}, activeQuestionIndex }) {
       Array.isArray(val)
     ) || [];
 
-  // console.log("questions:", questions);
+  console.log("questions:", questions);
   // console.log("mockInterviewQuestion:", mockInterviewQuestion);
 
   if (!Array.isArray(questions)) {
