@@ -80,10 +80,14 @@ function RecordAnswerSection({
 
     console.log("question", questions[activeQuestionIndex]?.answer);
 
-    const mockJsonResp = result.response
-      .text()
-      .replace("```json", "")
-      .replace("```", "");
+    const extractJson = (responseText) => {
+      // Match anything inside the first `{` and last `}`
+      const jsonMatch = responseText.match(/{[\s\S]*}/);
+      return jsonMatch ? jsonMatch[0] : "{}"; // Return extracted JSON or an empty object
+    };
+    
+    const mockJsonResp = extractJson(result.response.text());
+    
 
     // console.log(mockJsonResp);
     const JsonFeedbackResp = JSON.parse(mockJsonResp);
